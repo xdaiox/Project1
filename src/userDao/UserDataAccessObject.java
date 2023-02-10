@@ -13,25 +13,25 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 
 	// C
 	@Override
-	public boolean creatData(User user) {
+	public boolean createData(User user) {
 		String sql="insert into [HotelGuest] (Year,Total,OverseaChinese,Asia,Taiwan,"
 				+ "Japan,AsiaLand,AsiaOther,Europe,AustraliaNewZealand,NorthAmerica,Other) "
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?)";
 		ConnectionFactory connFactory = new ConnectionFactory();
 		try (Connection conn = connFactory.getConnection()){
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, user.getYear());
-			pstmt.setInt(2, user.getTotal());
-			pstmt.setInt(3, user.getOverseaChinese());
-			pstmt.setInt(4, user.getAsia());
-			pstmt.setInt(5, user.getTaiwan());
-			pstmt.setInt(6, user.getJapan());
-			pstmt.setInt(7, user.getAsiaLand());
-			pstmt.setInt(8, user.getAsiaOther());
-			pstmt.setInt(9, user.getEurope());
-			pstmt.setInt(10, user.getAustraliaNewZealand());
-			pstmt.setInt(11, user.getNorthAmerica());
-			pstmt.setInt(12, user.getOther());
+			pstmt.setString(1, user.getYear());
+			pstmt.setString(2, user.getTotal());
+			pstmt.setString(3, user.getOverseaChinese());
+			pstmt.setString(4, user.getAsia());
+			pstmt.setString(5, user.getTaiwan());
+			pstmt.setString(6, user.getJapan());
+			pstmt.setString(7, user.getAsiaLand());
+			pstmt.setString(8, user.getAsiaOther());
+			pstmt.setString(9, user.getEurope());
+			pstmt.setString(10, user.getAustraliaNewZealand());
+			pstmt.setString(11, user.getNorthAmerica());
+			pstmt.setString(12, user.getOther());
 			int updateCount = pstmt.executeUpdate();
 			if(updateCount<1) {
 				return false;
@@ -75,7 +75,7 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 	@Override
 	public ArrayList<User> findAllUser() {
 		ArrayList<User> list = new ArrayList<>();
-		String sql="select id,account,pwd from [user]";
+		String sql="select * from [HotelGuest]";
 		ConnectionFactory connFactory = new ConnectionFactory();
 		try(Connection conn = connFactory.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -85,6 +85,18 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 //				user.setId(rs.getInt(1));
 //				user.setAccount(rs.getString(2));
 //				user.setPwd(rs.getString(3));
+				user.setYear(rs.getString(1));
+				user.setTotal(rs.getString(2));
+				user.setOverseaChinese(rs.getString(3));
+				user.setAsia(rs.getString(4));
+				user.setTaiwan(rs.getString(5));
+				user.setJapan(rs.getString(6));
+				user.setAsiaLand(rs.getString(7));
+				user.setAsiaOther(rs.getString(8));
+				user.setEurope(rs.getString(9));
+				user.setAustraliaNewZealand(rs.getString(10));
+				user.setNorthAmerica(rs.getString(11));
+				user.setOther(rs.getString(12));
 				list.add(user);
 			}
 			return list;

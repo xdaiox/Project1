@@ -7,7 +7,7 @@ import bean.User;
 public interface IUserDAO {
 
 	//C
-	boolean creatData(User user);//V
+	boolean createData(User user);//V
 
 	//R
 	User findUserById(int id);//V
