@@ -110,9 +110,18 @@ public class User {
 		Other = other;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "\n"+Year+"\t"+Total+"\t"+OverseaChinese+"\t\t"+Asia+"\t"+Taiwan+"\t"+Japan
+//				+"\t"+AsiaLand+"\t\t"+AsiaOther+"\t\t"+Europe+"\t"+AustraliaNewZealand+"\t\t\t"
+//				+NorthAmerica+"\t\t"+Other;
+//	}
+	
 	@Override
 	public String toString() {
-		return "\n"+Year+"\t"+Total+"\t"+OverseaChinese+"\t\t"+Asia+"\t"+Taiwan+"\t"+Japan+"\t"+AsiaLand+"\t\t"+AsiaOther+"\t\t"+Europe+"\t"+AustraliaNewZealand+"\t\t\t"+NorthAmerica+"\t\t"+Other;
+		return "\n"+Year+","+Total+","+OverseaChinese+","+Asia+","+Taiwan+","+Japan
+				+","+AsiaLand+","+AsiaOther+","+Europe+","+AustraliaNewZealand+","
+				+NorthAmerica+","+Other;
 	}
 	
 //	

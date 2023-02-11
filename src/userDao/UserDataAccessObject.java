@@ -80,11 +80,23 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 		try(Connection conn = connFactory.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
+			User user0 = new User();
+			user0.setYear("Year");
+			user0.setTotal("Total");
+			user0.setOverseaChinese("OverseaChinese");
+			user0.setAsia("Asia");
+			user0.setTaiwan("Taiwan");
+			user0.setJapan("Japan");
+			user0.setAsiaLand("AsiaLand");
+			user0.setAsiaOther("AsiaOther");
+			user0.setEurope("Europe");
+			user0.setAustraliaNewZealand("AustraliaNewZealand");
+			user0.setNorthAmerica("NorthAmerica");
+			user0.setOther("Other");
+			list.add(user0);
+			
 			while(rs.next()) {
 				User user = new User();
-//				user.setId(rs.getInt(1));
-//				user.setAccount(rs.getString(2));
-//				user.setPwd(rs.getString(3));
 				user.setYear(rs.getString(1));
 				user.setTotal(rs.getString(2));
 				user.setOverseaChinese(rs.getString(3));
