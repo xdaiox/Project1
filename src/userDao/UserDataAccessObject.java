@@ -80,35 +80,20 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 		try(Connection conn = connFactory.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
-			User user0 = new User();
-			user0.setYear("Year");
-			user0.setTotal("Total");
-			user0.setOverseaChinese("OverseaChinese");
-			user0.setAsia("Asia");
-			user0.setTaiwan("Taiwan");
-			user0.setJapan("Japan");
-			user0.setAsiaLand("AsiaLand");
-			user0.setAsiaOther("AsiaOther");
-			user0.setEurope("Europe");
-			user0.setAustraliaNewZealand("AustraliaNewZealand");
-			user0.setNorthAmerica("NorthAmerica");
-			user0.setOther("Other");
+			
+			User user0 = new User("Year","Total","OverseaChinese","Asia",
+					"Taiwan","Japan","AsiaLand","AsiaOther","Europe",
+					"AustraliaNewZealand","NorthAmerica","Other");
 			list.add(user0);
 			
+			
+			
 			while(rs.next()) {
-				User user = new User();
-				user.setYear(rs.getString(1));
-				user.setTotal(rs.getString(2));
-				user.setOverseaChinese(rs.getString(3));
-				user.setAsia(rs.getString(4));
-				user.setTaiwan(rs.getString(5));
-				user.setJapan(rs.getString(6));
-				user.setAsiaLand(rs.getString(7));
-				user.setAsiaOther(rs.getString(8));
-				user.setEurope(rs.getString(9));
-				user.setAustraliaNewZealand(rs.getString(10));
-				user.setNorthAmerica(rs.getString(11));
-				user.setOther(rs.getString(12));
+				User user = new User(rs.getString(2),rs.getString(3),
+						rs.getString(4),rs.getString(5),rs.getString(6),
+						rs.getString(7),rs.getString(8),rs.getString(9),
+						rs.getString(10),rs.getString(11),rs.getString(12),
+						rs.getString(13));
 				list.add(user);
 			}
 			return list;
