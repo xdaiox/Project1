@@ -1,74 +1,36 @@
 package test;
 
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import userDao.UserDataAccessObject;
-import bean.User;
-
+import java.util.Scanner;
 
 public class test {
 
 	public static void main(String[] args) {
-		try {
-			URL url = new URL("https://data.kcg.gov.tw/dataset/d2e2a703-913b-4fc7-817f-6a7b985ab430/resource/46a07137-163f-4391-ad57-51668ba5ee75/download/.csv");
-			InputStream openStream = url.openStream();
-			InputStreamReader isr = new InputStreamReader(openStream);
-			BufferedReader bufferedReader = new BufferedReader(isr);
-			String str="";
-			UserDataAccessObject userDao = new UserDataAccessObject();
+		boolean x = true;
+		
+		InputData inputData = new InputData();
+		inputData.inputdata();//把網頁資料抓進資料庫
+		
+		Scanner sc = new Scanner(System.in);
+		do {
+			System.out.print("\n高雄市觀光旅館住客人次2017~2021，請輸入要查找的年份(若要查找全部請寫all) : ");
+			String type = sc.next();
 			
-			while((str=bufferedReader.readLine())!=null) {
-				String[] split = str.split(",");
+			if(type.equals("all")||type.equals("ALL")) {
+				FindAllData findAllData = new FindAllData();
+				findAllData.findalldata();//抓資料庫所有的檔案並匯出成CSV檔
+				x=false;
 				
-				if(split[0].equals("2017")) {
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										 split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println("2017"+userDao.createData(user));
+			}else if(type.equals("2017")||type.equals("2018")||type.equals("2019")||type.equals("2020")||type.equals("2021")){
+				FindDataByYear findDataByYear = new FindDataByYear();
+				findDataByYear.findDataByYear(type);//抓特定年份的資料並匯出成CSV檔
+				x=false;
 				
-				}else if(split[0].equals("2018")){
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										 split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println("2018"+userDao.createData(user));
-				
-				}else if(split[0].equals("2019")){
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										 split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println("2019"+userDao.createData(user));
-				
-				}else if(split[0].equals("2020")){
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										 split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println("2020"+userDao.createData(user));
-				
-				}else if(split[0].equals("2021")){
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										 split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println("2021"+userDao.createData(user));
-				}
-			}//(str=bufferedReader.readLine())!=null
-
-			String strrs=userDao.findAllUser().toString();
-			strrs = strrs.replace("[", "").replace("]", "");//刪除sql查詢時產生的中括弧
-	        FileOutputStream fw = new FileOutputStream("C:\\Java\\workspace\\Project1\\Project1.csv");
-	        OutputStreamWriter osw = new OutputStreamWriter(fw, "UTF-8");
-	        osw.write(strrs);
-	        System.out.println(strrs);
-			
-			osw.close();
-			bufferedReader.close();
-			isr.close();
-			openStream.close();
+			}else {
+				System.out.println("輸入錯誤，請重新輸入");
+			}
+		}while(x);
 		
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		System.out.println();
-		
+		sc.close();
 	}
 
 }

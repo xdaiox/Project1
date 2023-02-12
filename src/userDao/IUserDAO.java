@@ -10,9 +10,9 @@ public interface IUserDAO {
 	boolean createData(User user);//V
 
 	//R
-	User findUserById(int id);//V
+	ArrayList<User> findDataByYear(String year);//V
 
-	ArrayList<User> findAllUser();
+	ArrayList<User> findAllData();
 
 	//U
 	boolean updateUser(User user);

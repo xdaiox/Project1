@@ -14,6 +14,14 @@ public class User {
 	private String NorthAmerica;
 	private String Other;
 	
+	@Override
+	public String toString() {
+		return "\n"+Year+","+Total+","+OverseaChinese+","+Asia+","+Taiwan+","+Japan
+				+","+AsiaLand+","+AsiaOther+","+Europe+","+AustraliaNewZealand+","
+				+NorthAmerica+","+Other;
+	}
+	
+	
 	public User(String Year,String Total,String OverseaChinese,String Asia,
 			String Taiwan,String Japan,String AsiaLand,String AsiaOther,String Europe,
 			String AustraliaNewZealand,String NorthAmerica,String Other)
@@ -117,12 +125,6 @@ public class User {
 //				+NorthAmerica+"\t\t"+Other;
 //	}
 	
-	@Override
-	public String toString() {
-		return "\n"+Year+","+Total+","+OverseaChinese+","+Asia+","+Taiwan+","+Japan
-				+","+AsiaLand+","+AsiaOther+","+Europe+","+AustraliaNewZealand+","
-				+NorthAmerica+","+Other;
-	}
 	
 //	
 //	public Integer getYear() {
