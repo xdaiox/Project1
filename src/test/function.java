@@ -15,7 +15,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import bean.User;
 import connUtil.ConnectionFactory;
@@ -118,26 +117,26 @@ public class function {
 		return true;
 	}
 	
-	public ArrayList<User> outputSchema() {
-		ArrayList<User> list = new ArrayList<>();
+	public User outputSchema() {
+		User user;
 		String sql = "select * from [HotelGuest]";
 		ConnectionFactory connFactory = new ConnectionFactory();
 		try(Connection conn = connFactory.getConnection()) {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
 			ResultSetMetaData metaData = rs.getMetaData();
-			User user = new User(metaData.getColumnLabel(2),metaData.getColumnLabel(3),
+			user = new User(metaData.getColumnLabel(2),metaData.getColumnLabel(3),
 					metaData.getColumnLabel(4),metaData.getColumnLabel(5),
 					metaData.getColumnLabel(6),metaData.getColumnLabel(7),
 					metaData.getColumnLabel(8),metaData.getColumnLabel(9),
 					metaData.getColumnLabel(10),metaData.getColumnLabel(11),
 					metaData.getColumnLabel(12),metaData.getColumnLabel(13));
-			list.add(user);
+			return user;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		return list;
+		return null;
 	}
 }

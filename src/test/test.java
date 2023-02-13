@@ -12,6 +12,7 @@ public class test {
 		
 		Scanner sc = new Scanner(System.in);
 		do {
+			
 			System.out.print("\n高雄市觀光旅館住客人次2017~2021，請輸入要查找的年份(若要查找全部請寫all) : ");
 			String type = sc.next();
 			int year =0;
