@@ -35,11 +35,9 @@ public class function {
 			
 			while((str=bufferedReader.readLine())!=null) {
 				String[] split = str.split(",");
-				if(split[0]!=null) {
 					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
 										split[6],split[7],split[8],split[9],split[10],split[11]);
 					System.out.println(split[0]+" "+userDao.createData(user));
-				}//split[0]!=null
 			}//(str=bufferedReader.readLine())!=null
 	
 			bufferedReader.close();
@@ -86,10 +84,10 @@ public class function {
 	}
 	
 	
-	public void findDataByYear(int type) {
+	public boolean findDataByYear(int type) {
 		UserDataAccessObject userDao = new UserDataAccessObject();
-		String strSchema=outputSchema().toString();
 		String strrs = userDao.findDataByYear(type).toString();
+		String strSchema=outputSchema().toString();
 		strSchema = strSchema.replace("[", "").replace("]", "");//刪除sql查詢時產生的中括弧
 		strrs = strrs.replace("[", "").replace("]", "");//刪除sql查詢時產生的中括弧
        
@@ -114,6 +112,7 @@ public class function {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+		return true;
 	}
 	
 	public ArrayList<User> outputSchema() {
