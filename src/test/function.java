@@ -32,14 +32,17 @@ public class function {
 			BufferedReader bufferedReader = new BufferedReader(isr);
 			String str="";
 			UserDataAccessObject userDao = new UserDataAccessObject();
-			
+			int linecount = 0;
+				
 			while((str=bufferedReader.readLine())!=null) {
-				String[] split = str.split(",");
-					User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
-										split[6],split[7],split[8],split[9],split[10],split[11]);
-					System.out.println(split[0]+" "+userDao.createData(user));
-			}//(str=bufferedReader.readLine())!=null
-	
+				if(linecount++>0) {
+					String[] split = str.split(",");
+						User user = new User(split[0],split[1],split[2],split[3],split[4],split[5],
+											split[6],split[7],split[8],split[9],split[10],split[11]);
+						System.out.println(split[0]+" "+userDao.createData(user));
+					}			
+				}//(str=bufferedReader.readLine())!=null
+			
 			bufferedReader.close();
 			isr.close();
 			openStream.close();

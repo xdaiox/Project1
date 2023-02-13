@@ -31,6 +31,7 @@ public class UserDataAccessObject implements IUserDAO {// DAO
 			pstmt.setString(10, user.getAustraliaNewZealand());
 			pstmt.setString(11, user.getNorthAmerica());
 			pstmt.setString(12, user.getOther());
+			
 			int updateCount = pstmt.executeUpdate();
 			if(updateCount<1) {
 				return false;
