@@ -27,7 +27,7 @@ public class function {
 			URL url = new URL("https://data.kcg.gov.tw/dataset/d2e2a703-913b-4fc7-817f-6a7b985ab430/"
 					+ "resource/46a07137-163f-4391-ad57-51668ba5ee75/download/.csv");
 			InputStream openStream = url.openStream();
-			InputStreamReader isr = new InputStreamReader(openStream);
+			InputStreamReader isr = new InputStreamReader(openStream,"MS950");
 			BufferedReader bufferedReader = new BufferedReader(isr);
 			String str="";
 			UserDataAccessObject userDao = new UserDataAccessObject();
